@@ -1,4 +1,6 @@
 "use client";
+import './reveal.css';
+import { CSSTransition } from 'react-transition-group';
 import Image from 'next/image'
 import {useState} from "react";
 import React from 'react';
@@ -10,18 +12,18 @@ function Section(props) {
     <div className=" m-10 p-10">
       <h2 className="text-[1.5rem] col-span-2 text-center">{props.title}
         <button
-          className="cursor-pointer p-5 border-none"
+          className="cursor-pointer p-5 border-none hover:animate-pulse"
           onClick={() => setShowDetails(!showDetails)}
         >
           {showDetails ? '\u2228' : '\u2227'}
         </button>
       </h2>
-      
-      {showDetails && (
-        <p className=" mt-10">
-          {props.text}
+
+      <CSSTransition in={showDetails} timeout={1000} classNames="fade"  unmountOnExit>
+        <p className='mt-10' id='reveal'>
+            {props.text}
         </p>
-      )}
+      </CSSTransition>
     </div>
   );
 }
@@ -29,18 +31,20 @@ function Section(props) {
 
 export default function Home() {
   return (
-    <main className="flex flex-col min-h-screen bg-slate-300 text-black items-center">
-      <Image
-        className='rounded-full place-self-center'
-        src="/team-photo-noBg.png"
-        alt="My Face"
-        width={180}
-        height={180}
-        priority 
-      />
-      <div className='text-center text-3xl'>Dylan Burke</div>
+    <main className="flex flex-col min-h-screen bg-slate-300 text-black items-center font-mono">
+      <div style={{backgroundImage: 'url("/Screenshot (27).png")'}} className='flex flex-col justify-center w-full bg-no-repeat'>
+        <Image
+          className='rounded-full place-self-center'
+          src="/team-photo-noBg.png"
+          alt="My Face"
+          width={180}
+          height={180}
+          priority 
+        />
+        <div className='text-center text-3xl text-white'>Dylan Burke</div>
+      </div>
         
-        <div className='w-full bg-gray-500 text-white'>
+        <div className='w-full'>
           <Section title="About Me" className='text-center w-1/2 ' text={
             <div>
               Hi! I'm Dylan, a passionate computer science graduate from Michigan State University. Throughout my academic journey, I've developed a strong 
@@ -53,7 +57,7 @@ export default function Home() {
           />
         </div>
         
-        <div className='w-full'>
+        <div className='w-full bg-gray-500 text-white'>
           <Section title="Course Work" text={
             <div className=''>
               <ul className='ml-10 space-y-3'>
@@ -105,7 +109,7 @@ export default function Home() {
           />
         </div>
         
-        <div className='w-full bg-gray-500 text-white'>
+        <div className='w-full'>
           <Section title="Work Experience" text={
             <div>
               <h1>Web/Business Development & Sales Intern</h1>
@@ -130,74 +134,77 @@ export default function Home() {
           />
         </div>
       
-      <Section title="Skills" text={
-        <div className='grid grid-cols-4 grid-rows-2 justify-items-center content-center items-center gap-5'>
-          <Image
-            className=''
-            src="/html5.png"
-            alt="html logo"
-            width={180}
-            height={180}
-            priority 
-          />
-          <Image
-            className=''
-            src="/css3.png"
-            alt="css logo"
-            width={180}
-            height={180}
-            priority 
-          />
-          <Image
-            className=''
-            src="/javascript.png"
-            alt="javascript logo"
-            width={180}
-            height={180}
-            priority 
-          />
-          <Image
-            className=''
-            src="/Python.png"
-            alt="python logo"
-            width={180}
-            height={180}
-            priority 
-          />
-          <Image
-            className=''
-            src="/ms-office.png"
-            alt="microsoft office logo"
-            width={180}
-            height={180}
-            priority 
-          />
-          <Image
-            className=''
-            src="/quicksight.png"
-            alt="amazon quicksight logo"
-            width={180}
-            height={180}
-            priority 
-          />
-          <Image
-            className=''
-            src="/react.png"
-            alt="react logo"
-            width={180}
-            height={180}
-            priority 
-          />
-          <Image
-            className=''
-            src="/agile.png"
-            alt="agile logo"
-            width={180}
-            height={180}
-            priority 
-          />
-        </div>}
-      />
+      <div className='w-full bg-gray-500 text-white'>
+        <Section title="Skills" className="w-full" text={
+          <div className='grid grid-cols-4 grid-rows-2 justify-items-center content-center items-center gap-5'>
+            <Image
+              className=''
+              src="/html5.png"
+              alt="html logo"
+              width={180}
+              height={180}
+              priority 
+            />
+            <Image
+              className=''
+              src="/css3.png"
+              alt="css logo"
+              width={180}
+              height={180}
+              priority 
+            />
+            <Image
+              className=''
+              src="/javascript.png"
+              alt="javascript logo"
+              width={180}
+              height={180}
+              priority 
+            />
+            <Image
+              className=''
+              src="/Python.png"
+              alt="python logo"
+              width={180}
+              height={180}
+              priority 
+            />
+            <Image
+              className=''
+              src="/ms-office.png"
+              alt="microsoft office logo"
+              width={180}
+              height={180}
+              priority 
+            />
+            <Image
+              className=''
+              src="/quicksight.png"
+              alt="amazon quicksight logo"
+              width={180}
+              height={180}
+              priority 
+            />
+            <Image
+              className=''
+              src="/react.png"
+              alt="react logo"
+              width={180}
+              height={180}
+              priority 
+            />
+            <Image
+              className=''
+              src="/agile.png"
+              alt="agile logo"
+              width={180}
+              height={180}
+              priority 
+            />
+          </div>}
+        />
+      </div>
+      
 
     </main>
   )
